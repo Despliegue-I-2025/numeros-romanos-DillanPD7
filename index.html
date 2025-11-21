@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Imperium Converter - Conversor Romano</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Botones de información -->
+    <div class="info-buttons">
+        <button class="info-btn" id="helpBtn" aria-label="Cómo usar">
+            <span>❓</span>
+            <span class="btn-tooltip">Cómo usar</span>
+        </button>
+        <button class="info-btn" id="historyBtn" aria-label="Historia Romana">
+            <span>🏛️</span>
+            <span class="btn-tooltip">Historia</span>
+        </button>
+    </div>
+
+    <!-- Botón de tema -->
+    <div class="theme-toggle">
+        <button id="themeButton" aria-label="Cambiar tema">
+            <span class="sun">☀️</span>
+            <span class="moon">🌙</span>
+        </button>
+    </div>
+
+    <!-- Pop-up de ayuda -->
+    <div id="helpPopup" class="popup">
+        <div class="popup-content">
+            <div class="popup-header">
+                <h2>📖 Cómo Usar el Conversor</h2>
+                <button class="close-popup" id="closeHelp">&times;</button>
+            </div>
+            <div class="popup-body">
+                <div class="instruction-section">
+                    <h3>🔢 Conversión de Arábigo a Romano</h3>
+                    <p>Ingresa números del 1 al 3999. El sistema sigue estas reglas:</p>
+                    <ul>
+                        <li><strong>Valores básicos:</strong> I=1, V=5, X=10, L=50, C=100, D=500, M=1000</li>
+                        <li><strong>Sustracción:</strong> IV=4, IX=9, XL=40, XC=90, CD=400, CM=900</li>
+                        <li><strong>Suma:</strong> II=2, III=3, VI=6, VII=7, VIII=8</li>
+                    </ul>
+                </div>
+
+                <div class="instruction-section">
+                    <h3>🏺 Conversión de Romano a Arábigo</h3>
+                    <p>Escribe números romanos válidos (pueden ser minúsculas):</p>
+                    <ul>
+                        <li><strong>Ejemplos válidos:</strong> XIV=14, MCMXC=1990, MMXXIII=2023</li>
+                        <li><strong>Reglas importantes:</strong></li>
+                        <li>• I solo puede restar a V y X</li>
+                        <li>• X solo puede restar a L y C</li>
+                        <li>• C solo puede restar a D y M</li>
+                        <li>• No se puede repetir V, L, D más de una vez</li>
+                    </ul>
+                </div>
+
+                <div class="examples">
+                    <h3>💡 Ejemplos Prácticos</h3>
+                    <div class="example-grid">
+                        <div class="example">
+                            <span class="arabic">1994</span>
+                            <span class="arrow">→</span>
+                            <span class="roman">MCMXCIV</span>
+                        </div>
+                        <div class="example">
+                            <span class="arabic">888</span>
+                            <span class="arrow">→</span>
+                            <span class="roman">DCCCLXXXVIII</span>
+                        </div>
+                        <div class="example">
+                            <span class="arabic">49</span>
+                            <span class="arrow">→</span>
+                            <span class="roman">XLIX</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pop-up de historia -->
+    <div id="historyPopup" class="popup">
+        <div class="popup-content">
+            <div class="popup-header">
+                <h2>🏛️ Historia de los Números Romanos</h2>
+                <button class="close-popup" id="closeHistory">&times;</button>
+            </div>
+            <div class="popup-body">
+                <div class="history-section">
+                    <h3>📜 Orígenes Antiguos</h3>
+                    <p>Los números romanos se desarrollaron en la Antigua Roma alrededor del siglo VIII a.C. y se utilizaron en todo el Imperio Romano hasta su caída.</p>
+                    
+                    <div class="fact-card">
+                        <h4>¿Por qué estos símbolos?</h4>
+                        <p>Se cree que el sistema se originó de las marcas de conteo en ábacos o tablillas de cera:</p>
+                        <ul>
+                            <li><strong>I</strong> - Un dedo o marca simple</li>
+                            <li><strong>V</strong> - La forma de la mano abierta (5 dedos)</li>
+                            <li><strong>X</strong> - Dos manos cruzadas (10 dedos)</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="history-section">
+                    <h3>⚔️ Uso en la Antigua Roma</h3>
+                    <p>Los romanos usaban este sistema para:</p>
+                    <div class="usage-grid">
+                        <div class="usage-item">
+                            <span class="icon">📅</span>
+                            <span>Fechas en monumentos</span>
+                        </div>
+                        <div class="usage-item">
+                            <span class="icon">⚖️</span>
+                            <span>Leyes y documentos oficiales</span>
+                        </div>
+                        <div class="usage-item">
+                            <span class="icon">🏟️</span>
+                            <span>Numeración de años y eventos</span>
+                        </div>
+                        <div class="usage-item">
+                            <span class="icon">💰</span>
+                            <span>Transacciones comerciales</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="history-section">
+                    <h3>🔍 Datos Curiosos</h3>
+                    <div class="curiosities">
+                        <div class="curiosity">
+                            <strong>El número 4:</strong> En relojes antiguos suele verse "IIII" en lugar de "IV"
+                        </div>
+                        <div class="curiosity">
+                            <strong>Sin cero:</strong> Los romanos no tenían símbolo para el cero
+                        </div>
+                        <div class="curiosity">
+                            <strong>Grandes números:</strong> Para números mayores usaban una línea superior (ↁ=5000, ↂ=10000)
+                        </div>
+                        <div class="curiosity">
+                            <strong>Uso moderno:</strong> Se usan en relojes, libros, películas y eventos importantes
+                        </div>
+                    </div>
+                </div>
+
+                <div class="history-section">
+                    <h3>🎯 Legado Moderno</h3>
+                    <p>Hoy usamos números romanos para:</p>
+                    <ul>
+                        <li>• Siglos y años importantes (XXI siglo)</li>
+                        <li>• Nombres de reyes y papas (Felipe VI, Benedicto XVI)</li>
+                        <li>• Numeración de capítulos en libros</li>
+                        <li>• Eventos deportivos (Super Bowl LVIII)</li>
+                        <li>• Películas (Star Wars: Episode IV)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contenido principal -->
+    <div class="container">
+        <header class="header">
+            <div class="logo">
+                <div class="roman-pillar"></div>
+                <h1>IMPERIUM CONVERTER</h1>
+                <div class="roman-pillar"></div>
+            </div>
+            <p class="subtitle">Convierte entre el legado romano y la modernidad</p>
+        </header>
+
+        <div class="main-content">
+            <div class="converter-card">
+                <div class="card-header">
+                    <div class="icon">🏛️</div>
+                    <h2>Arábigo a Romano</h2>
+                </div>
+                <div class="card-body">
+                    <div class="input-group">
+                        <input type="number" id="arabicInput" placeholder="Ingresa número (1-3999)" min="1" max="3999">
+                        <span class="input-icon">🔢</span>
+                    </div>
+                    <button class="convert-btn" onclick="convertToRoman()">
+                        <span class="btn-text">Convertir a Romano</span>
+                        <span class="btn-icon">⚡</span>
+                    </button>
+                    <div id="romanResult" class="result">
+                        <span class="result-label">Resultado:</span>
+                        <span class="result-value"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="converter-card">
+                <div class="card-header">
+                    <div class="icon">📜</div>
+                    <h2>Romano a Arábigo</h2>
+                </div>
+                <div class="card-body">
+                    <div class="input-group">
+                        <input type="text" id="romanInput" placeholder="Ej: XIV, MCMXC" maxlength="15">
+                        <span class="input-icon">🏺</span>
+                    </div>
+                    <button class="convert-btn" onclick="convertToArabic()">
+                        <span class="btn-text">Convertir a Arábigo</span>
+                        <span class="btn-icon">⚡</span>
+                    </button>
+                    <div id="arabicResult" class="result">
+                        <span class="result-label">Resultado:</span>
+                        <span class="result-value"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="history-section">
+            <h3>📋 Historial de Conversiones</h3>
+            <div id="historyList" class="history-list">
+                <!-- Las conversiones se agregarán aquí -->
+            </div>
+            <button class="clear-btn" onclick="clearHistory()">Limpiar Historial</button>
+        </div>
+
+        <footer class="footer">
+            <p>Elaborado con la precisión de las legiones romanas</p>
+        </footer>
+    </div>
+
+    <div class="decoration">
+        <div class="laurel left"></div>
+        <div class="laurel right"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
