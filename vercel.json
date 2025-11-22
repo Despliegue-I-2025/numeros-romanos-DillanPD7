@@ -21,11 +21,17 @@
   "routes": [
     {
       "src": "/a2r",
+      "methods": ["GET"],
       "dest": "/api/a2r.js"
     },
     {
-      "src": "/r2a",
+      "src": "/r2a", 
+      "methods": ["GET"],
       "dest": "/api/r2a.js"
+    },
+    {
+      "src": "/(.*\\.(css|js))",
+      "dest": "/$1"
     },
     {
       "src": "/(.*)",
