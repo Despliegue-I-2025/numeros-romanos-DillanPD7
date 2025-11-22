@@ -1,9 +1,7 @@
 class RomanConverter {
     static async toRoman(number) {
         try {
-            // Usar la URL completa de tu sitio Vercel
-            const baseUrl = window.location.origin;
-            const response = await fetch(`${baseUrl}/a2r?arabic=${number}`);
+            const response = await fetch(`/a2r?arabic=${number}`);
             const data = await response.json();
             
             if (!response.ok) {
@@ -16,11 +14,9 @@ class RomanConverter {
         }
     }
 
-     static async fromRoman(roman) {
+    static async fromRoman(roman) {
         try {
-            // Usar la URL completa de tu sitio Vercel
-            const baseUrl = window.location.origin;
-            const response = await fetch(`${baseUrl}/r2a?roman=${encodeURIComponent(roman)}`);
+            const response = await fetch(`/r2a?roman=${encodeURIComponent(roman)}`);
             const data = await response.json();
             
             if (!response.ok) {
