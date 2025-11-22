@@ -1,40 +1,20 @@
-export const handler = async (event) => {
-  const roman = event.queryStringParameters?.roman;
+const { romanToArabic } = require('./romanUtils');
 
-  // CORS
-  const headers = {
-    "Access-Control-Allow-Origin": "*",
-    "Content-Type": "application/json"
-  };
-
-  if (!roman) {
-    return { statusCode: 400, headers, body: JSON.stringify({ error: "Missing roman parameter" }) };
+module.exports = async (req, res) => {
+  // Configurar CORS
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Content-Type', 'application/json');
+  
+  const romanNumeral = req.query.roman;
+  
+  if (!romanNumeral) {
+    return res.status(400).json({ error: 'Parámetro roman requerido.' });
   }
 
-  const value = roman.toUpperCase();
-
-  // Regex oficial para validar Romanos auténticos del 1 al 3999
-  const validRomanRegex =
-    /^(M{0,3})(CM|CD|D?C{0,3})(XC|XL|L?X{0,3})(IX|IV|V?I{0,3})$/;
-
-  if (!validRomanRegex.test(value)) {
-    return { statusCode: 400, headers, body: JSON.stringify({ error: "Invalid roman numeral" }) };
+  try {
+    const arabicNumber = romanToArabic(romanNumeral);
+    return res.json({ arabic: arabicNumber });
+  } catch (error) {
+    return res.status(400).json({ error: error.message });
   }
-
-  const map = { I:1, V:5, X:10, L:50, C:100, D:500, M:1000 };
-
-  let total = 0;
-  for (let i = 0; i < value.length; i++) {
-    const curr = map[value[i]];
-    const next = map[value[i + 1]] || 0;
-
-    if (curr < next) total -= curr;
-    else total += curr;
-  }
-
-  return {
-    statusCode: 200,
-    headers,
-    body: JSON.stringify({ arabic: total })
-  };
 };

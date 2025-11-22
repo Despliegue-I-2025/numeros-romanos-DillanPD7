@@ -1,40 +1,20 @@
-export const handler = async (event) => {
-  const arabic = event.queryStringParameters?.arabic;
+const { arabicToRoman } = require('./romanUtils');
 
-  const headers = {
-    "Access-Control-Allow-Origin": "*",
-    "Content-Type": "application/json"
-  };
-
-  if (!arabic || isNaN(arabic)) {
-    return { statusCode: 400, headers, body: JSON.stringify({ error: "Invalid or missing arabic parameter" }) };
+module.exports = async (req, res) => {
+  // Configurar CORS
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Content-Type', 'application/json');
+  
+  const arabicNumber = parseInt(req.query.arabic, 10);
+  
+  if (isNaN(arabicNumber)) {
+    return res.status(400).json({ error: 'Parámetro arabic requerido.' });
   }
 
-  const num = Number(arabic);
-
-  if (num < 1 || num > 3999) {
-    return { statusCode: 400, headers, body: JSON.stringify({ error: "Number out of range (1-3999)" }) };
+  try {
+    const romanNumeral = arabicToRoman(arabicNumber);
+    return res.json({ roman: romanNumeral });
+  } catch (error) {
+    return res.status(400).json({ error: error.message });
   }
-
-  const map = [
-    ["M", 1000], ["CM", 900], ["D", 500], ["CD", 400],
-    ["C", 100], ["XC", 90], ["L", 50], ["XL", 40],
-    ["X", 10], ["IX", 9], ["V", 5], ["IV", 4], ["I", 1]
-  ];
-
-  let result = "";
-  let n = num;
-
-  for (const [roman, value] of map) {
-    while (n >= value) {
-      result += roman;
-      n -= value;
-    }
-  }
-
-  return {
-    statusCode: 200,
-    headers,
-    body: JSON.stringify({ roman: result })
-  };
 };
