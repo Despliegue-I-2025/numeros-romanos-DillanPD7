@@ -1,57 +1,148 @@
-[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/gJA-GD-V)
-﻿# Tateti Random
+Conversor Números Arábigos <--> Romanos
 
-API sencilla en Node.js que devuelve un movimiento aleatorio para un tablero de ta-te-ti.
+🚀 Sitio en Vivo:
 
-## Requisitos previos
-- Node.js 18 o superior.
-- Cuenta en Vercel con un proyecto (puede ser creado desde el dashboard o con el comando vercel link).
-- Acceso de administrador al repositorio en GitHub para crear *secrets*.
+✨ Características
+🎨 Diseño Espectacular: Interfaz con temática romana moderna y modo oscuro/claro
 
-## Instalacion local
-1. Clonar el repositorio y situarse en la raiz.
-2. Instalar las dependencias con `npm install`.
-3. Ejecutar la bateria de pruebas con `npm test`.
-4. Levantar el servidor local con `npm start` y consumir el endpoint `GET /move?board=[...]`.
+🔄 Conversión Bidireccional: Convierte fácilmente entre arábigo y romano
 
-## Despliegue continuo en Vercel
-Cada *push* a la rama `main` ejecuta el flujo definido en `.github/workflows/deploy-vercel.yml`. Este flujo instala dependencias, corre las pruebas y despliega en Vercel usando la CLI oficial. Para que funcione, sigue estos pasos una sola vez:
+📊 Historial Inteligente: Guarda tus últimas conversiones automáticamente
 
-### 1. Autenticarse y vincular el proyecto en Vercel
-```bash
-npm install --global vercel    (este paso instala vecel en tu máquina)
-vercel login  (este paso pide que hagas ENTER. Con eso te abre un browser y espera a que lo autorices)
-vercel link
-```
-El comando `vercel link` crea la carpeta `.vercel/` (no la subas al repositorio) con el archivo `project.json` que contiene `orgId` y `projectId`.
+🧠 Educativo: Pop-ups informativos con historia y reglas de numeración romana
 
-### 2. Crear un token de acceso
-Genera un token permanente con `vercel tokens create tateti-ci` o desde el dashboard (Account Settings > Tokens). 
-Yo lo creé con scope completo, y sin expirar. Lo guardé en un archivo .private que no se sube al git
-Guarda el valor; solo se muestra una vez.
+📱 Totalmente Responsive: Funciona perfecto en desktop, tablet y móvil
 
-### 3. Configurar *GitHub Secrets*
-En GitHub entra a **Settings > Secrets and variables > Actions** y agrega los siguientes secretos:
-- `VERCEL_TOKEN`: el token generado en el paso anterior.
-- `VERCEL_ORG_ID`: valor `orgId` del archivo `.vercel/project.json`.
-- `VERCEL_PROJECT_ID`: valor `projectId` del archivo `.vercel/project.json`.
+🧪 Tests Completos: 6 tests unitarios garantizando calidad del código
 
-Si tu aplicacion necesita variables de entorno, definalas en Vercel (`vercel env add` o desde el dashboard) o agrega pasos adicionales en el workflow.
+⚡ Rendimiento Optimizado: Carga rápida y experiencia fluida
 
-### 4. Disparar el workflow a mano (no debería hacer falta con GitHub Actions)
-Con los secretos configurados, haz *push* a `main`. GitHub Actions ejecuta:
-1. `npm ci`
-2. `npm test`
-3. `npx vercel pull --yes --environment=production`
-4. `npx vercel build --prod`
-5. `npx vercel deploy --prebuilt --prod`
+🚀 Instalación Local
+bash
+# Clonar el repositorio
+git clone https://github.com/tu-usuario/numeros-romanos-DillanPD7.git
 
-Al finalizar vas a ver la URL de despliegue en la pestana **Actions** del repositorio y en el dashboard de Vercel.
+# Navegar al directorio
+cd numeros-romanos-DillanPD7
 
-## Personalizacion
-- Para desplegar desde otra rama, cambia la seccion `on.push.branches` del workflow.
-- Si deseas saltar las pruebas antes de desplegar, elimina el paso "Run tests" en el YAML.
+# Instalar dependencias
+npm install
 
-## Scripts utiles
-- `npm start`: inicia el servidor.
-- `npm test`: ejecuta Jest.
+# Ejecutar en modo desarrollo
+npm start
+
+# Ejecutar tests
+npm test
+La aplicación estará disponible en: http://localhost:3000
+
+🛠️ Tecnologías
+Frontend:
+
+HTML 
+CSS
+JavaScript 
+Diseño Responsive
+
+Backend:
+
+Node.js
+
+REST API
+
+Testing & Calidad:
+
+Jest (Testing Framework)
+
+6 Tests Unitarios
+
+Cobertura de código
+
+Deployment:
+
+Vercel (Plataforma de despliegue)
+
+GitHub
+
+📝 Uso
+Conversión Básica:
+Arábigo a Romano: Ingresa un número (1-3999) y haz clic en "Convertir a Romano"
+
+Romano a Arábigo: Escribe un número romano y haz clic en "Convertir a Arábigo"
+
+Endpoints API:
+javascript
+// Arábigo a Romano
+GET /a2r?arabic=1994
+// Response: {"roman": "MCMXCIV"}
+
+// Romano a Arábigo  
+GET /r2a?roman=MCMXCIV
+// Response: {"arabic": 1994}
+Historial:
+Las conversiones se guardan automáticamente
+
+Máximo 10 conversiones en el historial
+
+Posibilidad de limpiar el historial
+
+🎓 Reglas de Números Romanos
+Tabla de Símbolos:
+Símbolo	Valor
+I	1
+V	5
+X	10
+L	50
+C	100
+D	500
+M	1000
+Reglas básicas:
+Suma: Símbolos iguales o decrecientes se suman → VI = 6
+Resta: Símbolo menor antes de mayor se resta → IV = 4
+Repetición: I, X, C, M se repiten máximo 3 veces → III = 3
+Sustracción válida:
+
+I solo puede restar a V y X
+
+X solo puede restar a L y C
+
+C solo puede restar a D y M
+
+Ejemplos:
+MCMXCIV = 1994
+
+MMXXIV = 2024
+
+CDXLIV = 444
+
+MMMDCCCLXXXVIII = 3888
+
+📂 Estructura del Proyecto
+
+numeros-romanos-DillanPD7/
+├── 📁 api/                    # Endpoints serverless
+├── 📁 coverage/               # Reportes de cobertura de tests
+├── 📁 node_modules/           # Dependencias de Node.js
+├── 📁 test/                   # Archivos de testing adicionales
+└── 📄 romanConverter.test.js  # Suite de tests unitarios
+├── 📄 index.html              # Interfaz principal
+├── 📄 styles.css              # Estilos y diseño responsive
+├── 📄 script.js               # Lógica del frontend y componentes
+├── 📄 server.js               # Servidor Express y endpoints API
+├── 📄 package.json            # Dependencias y scripts
+├── 📄 package-lock.json       # Lock de dependencias
+├── 📄 vercel.json             # Configuración de despliegue
+└── 📄 README.md              # Documentación
+Arquitectura:
+Frontend: Aplicación web estática con HTML, CSS y JavaScript
+
+Backend: API REST con Node.js y Express
+
+Testing: Suite completa con Jest para garantizar calidad
+
+Deployment: Configuración optimizada para Vercel
+
+👤 Autor
+Dillan Perez Diaz
+Estudiante de la Universidad Provincial de Córdoba Sede Capilla del Monte
+Proyecto Realizado en la Materia: Diseños y Arquitecturas de Despliegues I
+
