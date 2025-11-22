@@ -2,7 +2,7 @@
   "version": 2,
   "builds": [
     {
-      "src": "api/**/*.js",
+      "src": "server.js",
       "use": "@vercel/node"
     },
     {
@@ -10,7 +10,7 @@
       "use": "@vercel/static"
     },
     {
-      "src": "*.css", 
+      "src": "*.css",
       "use": "@vercel/static"
     },
     {
@@ -21,11 +21,17 @@
   "routes": [
     {
       "src": "/a2r",
-      "dest": "/api/a2r.js"
+      "methods": ["GET"],
+      "dest": "/server.js"
     },
     {
       "src": "/r2a",
-      "dest": "/api/r2a.js"
+      "methods": ["GET"], 
+      "dest": "/server.js"
+    },
+    {
+      "src": "/(.*\\.(html|css|js))",
+      "dest": "/$1"
     },
     {
       "src": "/(.*)",

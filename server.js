@@ -2,6 +2,9 @@ const express = require('express');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+// SERVIR ARCHIVOS ESTÁTICOS CORRECTAMENTE
+app.use(express.static(__dirname));
+
 // Middleware para CORS y JSON
 app.use(express.json());
 app.use(express.static('.')); // Servir archivos estáticos
