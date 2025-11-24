@@ -22,9 +22,6 @@ bash
 # Clonar el repositorio
 git clone https://github.com/tu-usuario/numeros-romanos-DillanPD7.git
 
-# Navegar al directorio
-cd numeros-romanos-DillanPD7
-
 # Instalar dependencias
 npm install
 
